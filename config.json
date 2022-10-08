@@ -1,0 +1,11 @@
+{
+    "dbConfig":{
+        "username": "",
+        "password": "",
+        "clusterName": "",
+        "databaseName": ""
+    },
+    "hostname": "",
+    "port": "",
+    "services": {}
+}
