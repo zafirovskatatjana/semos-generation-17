@@ -1,8 +1,7 @@
 const config = require("../config");
 const mongoose = require("mongoose");
 
-const { username, password, clusterName, databaseName } =
-	config.getConfig("dbConfig");
+const { username, password, clusterName, databaseName } = config.getConfigPropertyValue("dbConfig");
 
 const connectionString = `mongodb+srv://${username}:${password}@${clusterName}/${databaseName}?retryWrites=true&w=majority`;
 

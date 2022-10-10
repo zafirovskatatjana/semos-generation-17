@@ -1,0 +1,4 @@
+# example yaml file
+hostname: 10.10.10
+services: 
+  service1: '1'

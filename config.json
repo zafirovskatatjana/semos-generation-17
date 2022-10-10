@@ -5,7 +5,20 @@
         "clusterName": "",
         "databaseName": ""
     },
-    "hostname": "",
-    "port": "",
-    "services": {}
+    "hostname": "localhost",
+    "port": "50001",
+    "services": {
+		"authentication": {
+			"port": "",
+			"api-endpoint": ""
+		},
+        "library": {
+			"port": "",
+			"api-endpoint": ""
+		},
+        "users": {
+			"port": "",
+			"api-endpoint": ""
+		}
+	}
 }
