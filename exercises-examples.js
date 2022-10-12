@@ -59,3 +59,9 @@ console.log(this)
 console.log(this.globalThis)
 
 parentFunction()
+
+// Implicitly return an object from an arrow function
+const testy = { test: 1 };
+const returnObject = () => ({ test: 1 });
+
+console.log(returnObject())
