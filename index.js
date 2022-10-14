@@ -3,11 +3,6 @@ const connectDB = require("./pkg/database");
 const morgan = require("morgan");
 const auth = require("./handlers/auth");
 
-
-const NUMBER_SECONDS = 3; // 3 seconds 
-const SECONDS_TIMEOUT = NUMBER_SECONDS * 1000; // number in milliseconds
-
-
 connectDB();
 
 const port = config.getConfigPropertyValue("port");
@@ -20,25 +15,14 @@ app.use(morgan("tiny"));
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-	const result = await awaitResult();
-	res.send(` ${result} kako si? Poveli 🍦`);
+	res.send(`🙋‍♂️🙋‍♀️`);
 });
 
-const awaitResult = () => {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			if (false) {
-				reject(new Error("hey hey"));
-			}
-			resolve("hey");
-		}, SECONDS_TIMEOUT);
-	});
-};
 
 // Create endpoints
 
 // login
-app.post("/api/v1/auth/login", (req, res) => auth.login(req, res));
+app.post("/api/v1/auth/login", auth.login);
 // logout
 app.post("/api/v1/auth/logout", function logoutHandler(request, response) {
 	return auth.logout(request, response);
@@ -59,6 +43,5 @@ app.listen(port, (err) => {
 			err
 		);
 	}
-
 	console.log(`Server running on http://localhost:${port}`);
 });

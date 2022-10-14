@@ -6,19 +6,16 @@
         "databaseName": ""
     },
     "hostname": "localhost",
-    "port": 5001,
+    "port": 5000,
     "services": {
 		"authentication": {
-			"port": "",
-			"api-endpoint": ""
+			"port": 5001
 		},
         "library": {
-			"port": "",
-			"api-endpoint": ""
+			"port": 5002
 		},
         "users": {
-			"port": "",
-			"api-endpoint": ""
+			"port": 7000
 		}
 	}
 }

@@ -1,16 +1,45 @@
 
 
 const accountRepo = require('../../pkg/repo/account');
-const validateCreateNewAccount = require('./validator');
+const bcrypt = require('bcryptjs');
+
+const {validate, validateCreateNewAccountRule, validateLoginRule} = require('./validator');
 
 
 const BAD_REQUEST_STATUS = 400; // HTTP status
+const NOT_FOUND_STATUS = 404; // HTTP status
 const OK_STATUS = 200; // HTTP status
 const CREATED_STATUS = 201; // HTTP status
 
-const login = (request, response) => {
+const login = async (request, response) => {
+    try {
+        // validate the request body
+        await validate(request.body, validateLoginRule);
+        
+        // VALIDATION PASSED, NOW WE CAN CONTINUE
+        let account = await accountRepo.findAccountByEmail(request.body.email);
+        
+        // check if the account exists
+        if (account == null) {
+            throw {
+                status: NOT_FOUND_STATUS,
+                message: 'User not found'
+            };
+        } 
+        // check if the password sent is equal to the password in saved in DB
+        if (!bcrypt.compareSync(request.body.password, account.password)) {
+            throw {
+                status: BAD_REQUEST_STATUS,
+                message: `Passwords don't match`
+            }
+        }
+        
 
-    console.log(request.body);
+        return response.status(OK_STATUS).send(`Bravo you've logged in!`);
+    } catch (err) {
+        // return the bad request when we have an error
+        return response.status(err.status).send(err.message);
+    }
 };
 const logout = (request, response) => {};
 
@@ -30,11 +59,29 @@ const logout = (request, response) => {};
  */
 const register = async ({ body }, response) => {
     try {
-        await validateCreateNewAccount(body);
-        // accountRepo.createAccount(body)
-        return response.status(OK_STATUS).send('👍 nice one m8');
+        // validate the request body
+        await validate(body, validateCreateNewAccountRule);
+        
+        // VALIDATION PASSED, NOW WE CAN CONTINUE
+        let account = await accountRepo.findAccountByEmail(body.email);
+
+        // check if it exists
+        if (account != null) {
+            throw {
+                status: BAD_REQUEST_STATUS,
+                message: 'User already exists'
+            };
+        }
+
+        // encode the password so it's safely stored in db
+        body.password = bcrypt.hashSync(body.password);
+
+        let result = await accountRepo.createAccount(body);
+
+        return response.status(CREATED_STATUS).send('User successfully created!');
     } catch (err) {
-        return response.status(BAD_REQUEST_STATUS).send(err)
+        // return the bad request when we have an error
+        return response.status(err.status).send(err.message);
     }
 };
 const refreshToken = (request, response) => {};
