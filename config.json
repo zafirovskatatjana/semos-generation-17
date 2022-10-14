@@ -6,7 +6,7 @@
         "databaseName": ""
     },
     "hostname": "localhost",
-    "port": "5001",
+    "port": 5001,
     "services": {
 		"authentication": {
 			"port": "",

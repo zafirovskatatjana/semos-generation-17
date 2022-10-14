@@ -1,0 +1,38 @@
+
+USER STORY generic frame:
+AS A <enter stakeholder>
+I WANT TO <desired feature>
+SO THAT <argument behind what is needed>
+
+ACCEPTANCE CRITERIA frame:
+
+GIVEN <some case>
+WHEN <some scenario>
+THEN <what I expect>
+SO THAT <argument behind the scenario>
+
+
+DESCRIPTION:
+
+AS A user of our system
+I WANT TO store my credentials
+SO THAT I have a safer data stored in my system OR Nobody apart from me can access the system
+
+
+ACCEPTANCE CRITERIA:
+
+GIVEN The system has authorization/authetication
+WHEN I send my username and password to the /api/v1/login endpoint
+THEN I'll get back a token with my active session
+SO THAT I can access the rest of the REST API
+
+
+GIVEN The system has authorization/authetication
+WHEN I send my data to the /api/v1/create-user endpoint
+THEN I'll get back a confirmation I successfully created an account.
+SO THAT I can access the rest of the REST API
+
+
+
+
+
