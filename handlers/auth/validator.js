@@ -1,13 +1,13 @@
 const { Validator } = require("node-input-validator");
 // RULES TO VALIDATE BY
 const validateCreateNewAccountRule = {
-	username: "required",
+	username: "required|string|minLength:3",
+	password: "required|string|minLength:3",
 	email: "required|email",
-	password: "required",
 };
 const validateLoginRule = {
 	email: "required|email",
-	password: "required",
+	password: "required|string|minLength:3",
 };
 
 

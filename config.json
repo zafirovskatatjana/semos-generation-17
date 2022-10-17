@@ -1,12 +1,15 @@
 {
     "dbConfig":{
-        "username": "",
-        "password": "",
-        "clusterName": "",
-        "databaseName": ""
+        "username": "dimesky",
+        "password": "dimesky",
+        "clusterName": "cluster0.paqoz.mongodb.net",
+        "databaseName": "generacija17"
     },
     "hostname": "localhost",
     "port": 5000,
+    "security": {
+        "jwt_secret_key": "randomSecret4Semos<3$500"
+    },
     "services": {
 		"authentication": {
 			"port": 5001
