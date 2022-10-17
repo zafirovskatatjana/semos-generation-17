@@ -8,7 +8,8 @@
     "hostname": "localhost",
     "port": 5000,
     "security": {
-        "jwt_secret_key": "randomSecret4Semos<3$500"
+        "jwt_secret_key": "randomSecret4Semos<3$500",
+        "expiryTime": "20s"
     },
     "services": {
 		"authentication": {
