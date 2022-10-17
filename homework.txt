@@ -1,0 +1,45 @@
+TITLE: NEW BOOK ENDPOINT AND MODEL IN SYSTEM
+
+AS A User in the library system
+I WANT TO add new books, find all books that are available, filter books by their title
+SO THAT I can use them for my private library
+
+How the book model should look like:
+
+BookModel {
+    title: string,
+    author: string,
+    category: string,
+    genre: string,
+    year_issued: number
+    pages: number
+}
+
+
+ACCEPTANCE CRITERIA
+===============================
+GIVEN the system has a "api/v1/books" endpoint
+WHEN send a POST request to that endpoint with example body { title: "LOTR", author: 'Tolkien', category: 'fantasy'}
+WHEN I am successfully logged in to the system
+THEN I will get back a successfully response that I have created the entry
+------------------------------
+GIVEN the system has a "api/v1/books" endpoint
+WHEN send a POST request to that endpoint with example body { category: 'fantasy'}
+WHEN I am successfully logged in to the system
+THEN I will get back a response back that I have a bad request with missing properties
+===============================
+GIVEN the system has a "api/v1/books" endpoint
+WHEN send a GET request to that endpoint
+WHEN I am successfully logged in to the system
+THEN I will get back all of the books that are in the book system
+===============================
+GIVEN the system has a "api/v1/books" endpoint
+WHEN send a GET request to that endpoint "api/v1/books/1"
+WHEN I am successfully logged in to the system
+THEN I will get back the book with an id of "1"
+------------------------------
+GIVEN the system has a "api/v1/books" endpoint
+WHEN send a GET request to that endpoint "api/v1/books/test"
+WHEN I am successfully logged in to the system
+THEN I will get a response that I cannot find the entry because I have passed a string
+===============================

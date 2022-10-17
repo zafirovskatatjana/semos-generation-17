@@ -40,26 +40,12 @@ app.use(
 		})
 );
 
-app.get("/", async (req, res) => {
-	res.send(`🙋‍♂️🙋‍♀️`);
-});
-
-app.get("/api/v1/getData", async (req, res) => {
-	res.send([
-		{ people: `🙋‍♂️🙋‍♀️` },
-		{ dogs: "🐕🐕‍🦺🐩" },
-		{ fruits: "🍇🍈🍉🍊🍌🥝🍒🍑🍍" },
-	]);
-});
-
 // Create endpoints
 
 // login
 app.post("/api/v1/auth/login", auth.login);
 // logout
-app.post("/api/v1/auth/logout", function logoutHandler(request, response) {
-	return auth.logout(request, response);
-});
+app.post("/api/v1/auth/logout", auth.logout);
 // create user credentials / register
 app.post("/api/v1/auth/create-user", auth.register);
 // forgot password
@@ -68,6 +54,10 @@ app.post("/api/v1/auth/forgot-password", auth.forgotPassword);
 app.post("/api/v1/auth/reset-password", auth.resetPassword);
 // refresh token
 app.get("/api/v1/auth/refresh-token", auth.refreshToken);
+
+/* BOOK ENDPOINTS STARTS */
+// your code...
+/* BOOKS ENDPOINTS  ENDS HERE*/
 
 app.listen(port, (err) => {
 	if (err) {

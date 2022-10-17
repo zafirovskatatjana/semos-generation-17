@@ -136,3 +136,32 @@ try {
 } catch (error) {
 	console.log(error);
 }
+
+
+// custom expiry logic playground code
+
+// const expiryTime = '1d';
+const expiryTime = '21d';
+// const expiryTime = '3s';
+// const expiryTime = '5h';
+const MILISECONDS = 1000;
+const ONE_SECOND = 1; // in seconds
+const ONE_MINUTE = 60; // in seconds
+const ONE_HOUR = ONE_MINUTE * 60; // in minutes
+const ONE_DAY = ONE_HOUR * 24; // in hours
+
+const timeDictionary = {
+    'd': ONE_DAY,
+    'm': ONE_MINUTE,
+    's': ONE_SECOND,
+    'h': ONE_HOUR
+}
+
+function calculateExpiryTime() {
+    const time = timeDictionary[expiryTime.charAt(expiryTime.length - 1)];
+    const number = expiryTime.substring(0, expiryTime.length - 1);
+    return time * number;
+}
+
+console.log(calculateExpiryTime())
+// console.log(expiryTime.length)
