@@ -2,8 +2,13 @@ const authorRepo = require('../../../pkg/repo/author');
 
 
 const getAllAuthors = async (request, response) => {
+    const cachedResult = [];
     try {
-        return response.status(OK_STATUS).send({ });
+        if(cachedResult.length == 0) {
+            const authorData = await authorRepo.getAllAuthors();
+            cachedResult = [...authorData];
+        }
+        return response.status(OK_STATUS).send(cachedResult);
 
     } catch (err) {
         // return the bad request when we have an error
@@ -42,5 +47,7 @@ const addNewBookForAuthor = async (request, response) => {
 
 module.exports= [
     createNewAuthor,
-    addNewBookForAuthor
+    addNewBookForAuthor,
+    getAllBooksByAuthor,
+    getAllAuthors
 ]

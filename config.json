@@ -9,11 +9,11 @@
     "port": 5000,
     "security": {
         "jwt_secret_key": "randomSecret4Semos<3$500",
-        "expiryTime": "20s"
+        "expiryTime": "20m"
     },
     "services": {
         "proxy": {
-            "port": 6000 
+            "port": 5000
         },
 		"authentication": {
 			"port": 5001
@@ -22,7 +22,7 @@
 			"port": 5002
 		},
         "authors": {
-			"port": 7000
+			"port": 5003
 		}
 	}
 }

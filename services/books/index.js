@@ -18,7 +18,7 @@ app.use(morgan("tiny"));
 app.use(express.json());
 
 
-app.get('/',(req, res)=> {
+app.get('/api/v1/books',(req, res)=> {
 	res.status(200).send('call was made from books');
 });
 

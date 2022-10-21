@@ -17,8 +17,8 @@ app.use(morgan("tiny"));
 // parsing the body to be in json format
 app.use(express.json());
 
-app.get('/',(req, res)=> {
-	res.status(200).send('call was made from authors');
+app.get('/api/v1/author',(req, res)=> {
+	res.status(200).send(['call was made from authors']);
 });
 app.listen(port, (err) => {
 	if (err) {

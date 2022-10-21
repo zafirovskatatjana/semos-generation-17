@@ -165,3 +165,97 @@ function calculateExpiryTime() {
 
 console.log(calculateExpiryTime())
 // console.log(expiryTime.length)
+
+
+let array = [1, 1, 2, 3, 4, 5, 67, 2, 222, 2, 222];
+const non_duplicate = [];
+
+// BRUTE FORCE SOLUTION
+// 0. create non-duplicate array
+// 1. push one element onto none-duplicate array
+// 2. go to the next element
+// 3. check if it's already in the none-duplicate array
+// 3.1 if it is -> to the next element
+// 3.2 if it's not -> add it to the none-duplicate array;
+
+// BRUTE FORCE
+// array.forEach((item, index, array)=> {
+//     if(index == 0) {
+//         non_duplicate.push(item);
+//     }
+//     if(non_duplicate.includes(item)) {
+//         // no-op
+//     } else {
+//         non_duplicate.push(item)
+//     }
+// });
+
+// OPTIMIZE # 1
+// array.forEach((item, index, array)=> {
+//     if(index == 0) {
+//         non_duplicate.push(item);
+//     }
+//     if(!non_duplicate.includes(item)) {
+//         non_duplicate.push(item)
+//     }
+// });
+
+// OPTIMIZE #2
+// array.forEach((item, index, array)=> {
+//     if(!non_duplicate.includes(item)) {
+//         non_duplicate.push(item)
+//     }
+// });
+
+// OPTIMIZE #3
+array.forEach((item, index, array) => {
+	if (!non_duplicate.includes(item)) {
+		non_duplicate.push(item);
+	}
+});
+// use instead Set which is a data structure that does not hold duplicates
+array = [...new Set(array)];
+
+const set = new Set([1, 1, 2, 3, 3, 3, 3, 3, 3, 3, 33, 3, 3, 3, 3, 2, 3, 4]);
+const arrayFromTheSet = Array.from(set);
+const oneArray = [1, "1e21", true];
+const newArray = [...oneArray];
+
+// using spread operator to cut back the code from this bellow
+set.forEach((item) => newArray.push(item));
+            // const arrayOfTheSet = Array.of(set); NOT GOOD
+            //1    x  ✅  ! !  !  !   !   !  !    !
+            //2          x  !  !  !   !  ✅ !    ✅
+            //3             x  !  !   !  !   !   !   !
+            //4               x  !   !  !  !    !  !
+            // 5                  x  !   !  !     !   !
+            // 67                     x   !   !   !   !
+            // 222                           x    !  ✅
+            //   2                               x
+console.log(array);
+console.log(non_duplicate);
+console.log(set);
+console.log(arrayFromTheSet);
+console.log(newArray);
+// console.log(arrayOfTheSet) NOT GOOD
+
+                    //  xx xx
+const palindromeWord = "kayak";
+
+// quick JS trick
+console.log(palindromeWord == palindromeWord.split("").reverse().join(""));
+// but what the interview would really like to see
+console.log(isPalindrome(palindromeWord));
+
+function isPalindrome(word) {
+	let stack = [];
+	for (let i = 0; i < word.length; i++) {
+		stack.push(word[i]);
+	}
+	let reversedWord = "";
+	for (let i = 0; i < word.length; i++) {
+		reversedWord += stack.pop();
+	}
+	return word == reversedWord;
+}
+

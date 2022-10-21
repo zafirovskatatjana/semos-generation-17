@@ -4,7 +4,14 @@
   "description": "web services project for SEMOS generation 17",
   "main": "index.js",
   "scripts": {
-    "start": "node ./services/auth/index.js & node ./services/author/index.js & node ./services/books/index.js",
+    "start-books-service": "node ./services/books/index.js",
+    "start-auth-service": "node ./services/auth/index.js",
+    "start-author-service": "node ./services/author/index.js",
+    "start-proxy-service": "node ./services/proxy/index.js",
+    "start-scripts-in-parallel": "node ./services/author/index.js & node ./services/auth/index.js",
+    "start-scripts-sequentially": "node ./services/author/index.js && node ./services/author/index.js",
+    "start-windows": "start npm run start-books-service && start npm run start-auth-service && start npm run start-author-service",
+    "start-concurrently": "concurrently -n proxy,auth-service,books-service,author-service \"npm run start-proxy-service\" \"npm run start-auth-service\" \"npm run start-books-service\" \"npm run start-author-service\"",
     "start-dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,11 +23,15 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.18.1",
+    "express-http-proxy": "^1.6.3",
     "express-jwt": "^7.7.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
     "morgan": "^1.10.0",
     "node-input-validator": "^4.5.0",
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0"
   }
 }
