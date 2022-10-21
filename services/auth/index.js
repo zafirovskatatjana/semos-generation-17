@@ -1,13 +1,12 @@
-const config = require("./pkg/config");
-const connectDB = require("./pkg/database");
+const config = require("../../pkg/config");
+const connectDB = require("../../pkg/database");
 const morgan = require("morgan");
-const auth = require("./handlers/auth");
+const auth = require("./handlers");
 
 connectDB();
 
-const port = config.getConfigPropertyValue("port");
-const { jwt_secret_key: JWT_SECRET } =
-	config.getConfigPropertyValue("security");
+const { authentication: { port } } = config.getConfigPropertyValue("services");
+const { jwt_secret_key: JWT_SECRET } = config.getConfigPropertyValue("security");
 
 const express = require("express");
 const { expressjwt: checkJWTFunction } = require("express-jwt");
@@ -35,12 +34,10 @@ app.use(
 				"/api/v1/auth/create-user",
 				"/api/v1/auth/forgot-password",
 				"/api/v1/auth/reset-password",
-				"/api/v1/auth/refresh-token"
+				"/api/v1/auth/refresh-token",
 			],
 		})
 );
-
-// Create endpoints
 
 // login
 app.post("/api/v1/auth/login", auth.login);
@@ -55,9 +52,6 @@ app.post("/api/v1/auth/reset-password", auth.resetPassword);
 // refresh token
 app.get("/api/v1/auth/refresh-token", auth.refreshToken);
 
-/* BOOK ENDPOINTS STARTS */
-// your code...
-/* BOOKS ENDPOINTS  ENDS HERE*/
 
 app.listen(port, (err) => {
 	if (err) {
@@ -66,5 +60,5 @@ app.listen(port, (err) => {
 			err
 		);
 	}
-	console.log(`Server running on http://localhost:${port}`);
+	console.log(`Auth server running on http://localhost:${port}`);
 });

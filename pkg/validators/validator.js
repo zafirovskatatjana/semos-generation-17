@@ -10,6 +10,25 @@ const validateLoginRule = {
 	password: "required|string|minLength:3",
 };
 
+const validateCreateNewBookRule = {
+	title: "required|string|minLength:3",
+	author: "required|string|minLength:3",
+	genre: "required|string|minLength:3",
+	price: "required|number",
+	description: "required|string||minLength:10",
+};
+
+const validateCreateNewAuthorRule = {
+	name: "required|string|minLength:3",
+	about: "required|string|minLength:3",
+	books: "required|array"
+};
+
+const validateUpdateNewBookForAuthorRule = {
+	bookId: "required",
+	authorId: "required"
+};
+
 
 // FUNCTION THAT VALIDATES
 
