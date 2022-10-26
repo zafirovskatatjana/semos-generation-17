@@ -1,3 +1,4 @@
+const path = require('path');
 const config = require("../../pkg/config");
 const morgan = require("morgan");
 const express = require("express");
@@ -18,7 +19,7 @@ app.use(
 	"/api/v1/auth",
 	expressProxy(`http://localhost:${authPort}`, {
 		proxyReqPathResolver: (request) =>
-			`http://localhost:${authPort}/api/v1/auth${request.url}`,
+			`http://localhost:${authPort}/api/v1/auh${request.url}`,
 	})
 );
 // reroute the request to the books service
@@ -37,6 +38,8 @@ app.use(
 			`http://localhost:${authorsPort}/api/v1/author${request.url}`,
 	})
 );
+
+app.use("/", express.static(path.join(__dirname, "../../web/build")));
 
 app.listen(port, (err) => {
 	if (err) {

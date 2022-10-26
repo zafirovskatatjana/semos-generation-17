@@ -25,6 +25,7 @@ const getAllBooksByAuthor = async (request, response) => {
         return response.status(err.status).send(err.message);
     }
 };
+
 const createNewAuthor = async (request, response) => {
     try {
         return response.status(OK_STATUS).send({ });

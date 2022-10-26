@@ -117,7 +117,25 @@ const register = async ({ body }, response) => {
     }
 };
 const refreshToken = (request, response) => {};
-const forgotPassword = (request, response) => {};
+const forgotPassword = (request, response) => {
+
+    // 1. validate if we have correct data
+    //      1.1 email and username are send to the end-point
+    // 2. validate/check in is the user created in our DB. 
+    //      2.1 If he exists in our system, then proceed, else throw error
+    // 3. Compose email with a safe temporary URL on with the user can enter new password
+    //      3.2 Update the recovery status of that user name
+    //     3.1 Create dynamic endpoint to host the form temporarily
+
+};
+
+const recoverPassword = (request, response) => {
+    // 4. Expect the newly create password from the endpoint
+    //   4.1 Validate is is for the same username we send the email in the first place
+    //   4.2 Validate token send if it's not expired
+    // 5. Save new password it into DB
+    // 6. Set recovery status for to false
+}
 const resetPassword = (request, response) => {};
 
 

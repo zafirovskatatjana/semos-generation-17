@@ -20,6 +20,10 @@ app.use(express.json());
 app.get('/api/v1/author',(req, res)=> {
 	res.status(200).send(['call was made from authors']);
 });
+app.get('/api/v1/author/:id',(req, res)=> {
+	const {id} = req.params;
+	res.status(200).send(`call was made for author with id: ${id}`);
+});
 app.listen(port, (err) => {
 	if (err) {
 		throw new Error(

@@ -46,7 +46,8 @@ app.post("/api/v1/auth/logout", auth.logout);
 // create user credentials / register
 app.post("/api/v1/auth/create-user", auth.register);
 // forgot password
-app.post("/api/v1/auth/forgot-password", auth.forgotPassword);
+app.post("/api/v1/auth/forgot-password/", auth.forgotPassword);
+// app.post("/api/v1/auth/recover-password/:username/:randomGeneratedToken", auth.recoverPassword);
 // reset password
 app.post("/api/v1/auth/reset-password", auth.resetPassword);
 // refresh token
