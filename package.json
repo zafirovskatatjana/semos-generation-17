@@ -8,13 +8,14 @@
     "start-auth-service": "node ./services/auth/index.js",
     "start-author-service": "node ./services/author/index.js",
     "start-proxy-service": "node ./services/proxy/index.js",
+    "start-storage-service": "node ./services/storage/index.js",
     "start-scripts-in-parallel": "node ./services/author/index.js & node ./services/auth/index.js",
     "start-scripts-sequentially": "node ./services/author/index.js && node ./services/author/index.js",
     "start-windows": "start npm run start-books-service && start npm run start-auth-service && start npm run start-author-service",
-    "start-server-concurrently": "concurrently -n proxy,auth-service,books-service,author-service \"npm run start-proxy-service\" \"npm run start-auth-service\" \"npm run start-books-service\" \"npm run start-author-service\"",
+    "start-server-concurrently": "concurrently -n proxy,auth-service,books-service,author-service,storage \"npm run start-proxy-service\" \"npm run start-auth-service\" \"npm run start-books-service\" \"npm run start-author-service\" \"npm run start-storage-service\"",
     "start-server-dev": "nodemon index.js",
     "start-ui-dev": "cd web && npm run start",
-    "build-ui-project":"cd web && npm run build",
+    "build-ui-project": "cd web && npm run build",
     "start-full-project-dev": "start npm run start-server-concurrently && start npm run start-ui-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +26,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "blob-stream": "^0.1.3",
     "express": "^4.18.1",
     "express-http-proxy": "^1.6.3",
     "express-jwt": "^7.7.5",
@@ -32,7 +34,8 @@
     "mongoose": "^6.6.5",
     "morgan": "^1.10.0",
     "node-input-validator": "^4.5.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "pdfkit": "^0.13.0"
   },
   "devDependencies": {
     "concurrently": "^7.4.0"

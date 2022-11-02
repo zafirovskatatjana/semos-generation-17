@@ -23,6 +23,9 @@
 		},
         "authors": {
 			"port": 5003
+		},
+        "storage": {
+			"port": 5004
 		}
 	}
 }

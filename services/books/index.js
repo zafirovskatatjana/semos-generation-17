@@ -16,11 +16,15 @@ const app = express();
 app.use(morgan("tiny"));
 // parsing the body to be in json format
 app.use(express.json());
+app.use(
+	checkJWTFunction({ secret: JWT_SECRET, algorithms: ["HS256"] })
+);
 
-
-app.get('/api/v1/books',(req, res)=> {
-	res.status(200).send('call was made from books');
-});
+app.get('/api/v1/books', booksHandler.getAll);
+app.post('/api/v1/book', booksHandler.createNewBook);
+app.get('/api/v1/book/:id', booksHandler.getBookById);
+app.put('/api/v1/book/:id',  booksHandler.updateBookById);
+app.delete('/api/v1/book/:id', booksHandler.removeBook);
 
 app.listen(port, (err) => {
 	if (err) {

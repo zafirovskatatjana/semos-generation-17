@@ -1,6 +1,5 @@
 const authorRepo = require('../../../pkg/repo/author');
 
-
 const getAllAuthors = async (request, response) => {
     const cachedResult = [];
     try {
@@ -46,9 +45,20 @@ const addNewBookForAuthor = async (request, response) => {
     }
 };
 
-module.exports= [
+const removeAuthor = async (request, response) => {
+    try {
+        return response.status(OK_STATUS).send({ });
+
+    } catch (err) {
+        // return the bad request when we have an error
+        return response.status(err.status).send(err.message);
+    }
+};
+
+module.exports= {
     createNewAuthor,
     addNewBookForAuthor,
     getAllBooksByAuthor,
-    getAllAuthors
-]
+    getAllAuthors,
+    removeAuthor
+}

@@ -1,7 +1,7 @@
 const config = require("../../pkg/config");
 const connectDB = require("../../pkg/database");
 const morgan = require("morgan");
-const authors = require("./handlers");
+const authorsHandler = require("./handlers/index");
 
 connectDB();
 
@@ -20,10 +20,18 @@ app.use(express.json());
 app.get('/api/v1/author',(req, res)=> {
 	res.status(200).send(['call was made from authors']);
 });
-app.get('/api/v1/author/:id',(req, res)=> {
-	const {id} = req.params;
-	res.status(200).send(`call was made for author with id: ${id}`);
-});
+// check every request if it has a token
+app.use(
+	checkJWTFunction({ secret: JWT_SECRET, algorithms: ["HS256"] })
+);
+
+
+app.post("/api/v1/author", authorsHandler.createNewAuthor);
+app.get("/api/v1/author", authorsHandler);
+app.get("/api/v1/author/:id", auth);
+app.put("/api/v1/author/:id", auth.forgotPassword);
+app.delete("/api/v1/author/:id", auth.refreshToken);
+
 app.listen(port, (err) => {
 	if (err) {
 		throw new Error(
