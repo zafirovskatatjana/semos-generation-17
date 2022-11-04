@@ -10,6 +10,7 @@ const {
 	authentication: { port: authPort },
 	books: { port: booksPort },
 	authors: { port: authorsPort },
+	storage: { port: storagePort },
 } = config.getConfigPropertyValue("services");
 
 app.use(morgan("tiny"));
@@ -19,7 +20,7 @@ app.use(
 	"/api/v1/auth",
 	expressProxy(`http://localhost:${authPort}`, {
 		proxyReqPathResolver: (request) =>
-			`http://localhost:${authPort}/api/v1/auh${request.url}`,
+			`http://localhost:${authPort}/api/v1/auth${request.url}`,
 	})
 );
 // reroute the request to the books service
@@ -36,6 +37,15 @@ app.use(
 	expressProxy(`http://localhost:${authorsPort}`, {
 		proxyReqPathResolver: (request) =>
 			`http://localhost:${authorsPort}/api/v1/author${request.url}`,
+	})
+);
+
+// reroute the request to the storagePort service
+app.use(
+	"/api/v1/storage",
+	expressProxy(`http://localhost:${storagePort}`, {
+		proxyReqPathResolver: (request) =>
+			`http://localhost:${storagePort}/api/v1/storage${request.url}`,
 	})
 );
 

@@ -27,10 +27,10 @@ app.use(
 
 
 app.post("/api/v1/author", authorsHandler.createNewAuthor);
-app.get("/api/v1/author", authorsHandler);
-app.get("/api/v1/author/:id", auth);
-app.put("/api/v1/author/:id", auth.forgotPassword);
-app.delete("/api/v1/author/:id", auth.refreshToken);
+// app.get("/api/v1/author", authorsHandler);
+// app.get("/api/v1/author/:id", auth);
+// app.put("/api/v1/author/:id", auth.forgotPassword);
+// app.delete("/api/v1/author/:id", auth.refreshToken);
 
 app.listen(port, (err) => {
 	if (err) {

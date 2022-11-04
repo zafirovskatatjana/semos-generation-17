@@ -1,9 +1,45 @@
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
 
-const uploadFile = () => {};
-const getFileList = () => {};
-const downloadFile = () => {};
+const PDF_DOCUMENTS_DIR = `${__dirname}../../../../pdf-documents`
+const uploadFile = (req, res) => {
+	// check if the directory we want to save in, exists
+	if(!fs.existsSync(PDF_DOCUMENTS_DIR)) {
+		fs.mkdir(PDF_DOCUMENTS_DIR);
+	}
+
+	const fileName = req.files.document.name;
+	const fileDirPath = `${PDF_DOCUMENTS_DIR}/${fileName}`;
+
+	// get the file from the request and copy it in our system
+	req.files.document.mv(fileDirPath, (err) => {
+		if(err) {
+			return res.status(500).send('File not saved.');
+		}
+		return res.status(201).send('File saved 👼');
+	})
+};
+const getFileList = (req, res) => {
+	try {
+		let fileDirectory = fs.readdirSync((PDF_DOCUMENTS_DIR));
+		return res.status(200).send(fileDirectory)
+
+	} catch (err) {
+		console.error(err)
+		return res.status(404).send('List list not found.')
+	}
+};
+const downloadFile = (req, res) => {
+	let filename = req.params.filename;
+	let filePath = `${PDF_DOCUMENTS_DIR}/${filename}`;
+	const doesFileExist = fs.existsSync(filePath); 
+	if(!doesFileExist) {
+		return res.status(404).send('File not found.');
+	}
+	return res.download(filePath);
+	// return res.status(200).send(filePath)
+	
+};
 const removeFile = () => {};
 const createPDFFileHandler = async (req, res) => {
     try{

@@ -1,5 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
+import FileList from './components/FileList/FileList';
+import Login from './components/Login/Login';
 
 function App() {
 
@@ -9,7 +10,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-       Здраво дечки 🚁
+       <Login />
+       <FileList/>
       </header>
     </div>
   );
