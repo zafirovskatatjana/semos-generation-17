@@ -1,9 +1,9 @@
 {
     "dbConfig":{
-        "username": "",
-        "password": "",
-        "clusterName": "",
-        "databaseName": ""
+        "username": "dimesky",
+        "password": "dimesky",
+        "clusterName": "cluster0.paqoz.mongodb.net",
+        "databaseName": "generacija17"
     },
     "hostname": "localhost",
     "port": 5000,

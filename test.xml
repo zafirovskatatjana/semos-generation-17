@@ -1,0 +1,14 @@
+<Pizza>
+    <Dough></Dough>
+    <Ketchap></Ketchap>
+    <Peperoni></Peperoni>
+    <Cheese>🧀</Cheese>
+    <Parsley>Ma kakav parsley bre</Parsley>
+    <Pineapple>🍍</Pineapple>
+</Pizza>
+
+{
+    "pizza": {
+        "dough": "🌾"
+    }
+}

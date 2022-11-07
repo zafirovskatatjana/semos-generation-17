@@ -4,6 +4,7 @@
   "description": "web services project for SEMOS generation 17",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build-ui-project && npm run start-server-dev",
     "start-books-service": "node ./services/books/index.js",
     "start-auth-service": "node ./services/auth/index.js",
     "start-author-service": "node ./services/author/index.js",
@@ -16,7 +17,7 @@
     "start-server-nodemon-old": "nodemon index.js",
     "start-ui-dev": "cd web && npm run start",
     "build-ui-project": "cd web && npm run build",
-    "start-full-project-dev": "start npm run start-server-concurrently && start npm run start-ui-dev",
+    "start-full-project-dev": "start npm run start-server-dev && start npm run start-ui-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
