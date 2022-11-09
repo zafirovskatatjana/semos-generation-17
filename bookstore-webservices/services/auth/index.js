@@ -9,7 +9,7 @@ const { authentication: { port } } = config.getConfigPropertyValue("services");
 const { jwt_secret_key: JWT_SECRET } = config.getConfigPropertyValue("security");
 
 const express = require("express");
-const { expressjwt: checkJWTFunction } = require("express-jwt");
+const { expressjwt } = require("express-jwt");
 const app = express();
 
 app.use(morgan("tiny"));
@@ -25,7 +25,7 @@ app.use((request, response, next) => {
 
 // check every request if it has a token
 app.use(
-	checkJWTFunction({ secret: JWT_SECRET, algorithms: ["HS256"] })
+	expressjwt({ secret: JWT_SECRET, algorithms: ["HS256"] })
 		// don't check if it's using these routes below
 		.unless({
 			path: [

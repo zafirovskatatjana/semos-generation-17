@@ -3,7 +3,7 @@ const getRequestOptions = (token) => ({
 	method: "GET",
 	headers: {
 		"content-type": "application/json",
-        "Authorization": `bearer ${token}`
+        "Authorization": `Bearer ${token}`
 	},
 });
 

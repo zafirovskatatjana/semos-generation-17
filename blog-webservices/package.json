@@ -1,0 +1,33 @@
+{
+  "name": "blog-web-service",
+  "version": "1.0.0",
+  "description": "web services project for SEMOS generation 17",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build-ui-project && npm run start-server-dev",
+    "start-server-dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hallo"
+  ],
+  "author": "test-author",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "blob-stream": "^0.1.3",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "express-http-proxy": "^1.6.3",
+    "express-jwt": "^7.7.5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.5",
+    "morgan": "^1.10.0",
+    "node-input-validator": "^4.5.0",
+    "nodemon": "^2.0.20",
+    "pdfkit": "^0.13.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  }
+}

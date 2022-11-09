@@ -1,0 +1,28 @@
+{
+    "database":{
+        "username": "dimesky",
+        "password": "dimesky",
+        "clusterName": "cluster0.paqoz.mongodb.net",
+        "databaseName": "generacija17"
+    },
+    "hostname": "localhost",
+    "port": 5000,
+    "security": {
+        "jwt_secret_key": "jwt_secret4me",
+        "expiryTime": "20m"
+    },
+    "services": {
+        "proxy": {
+            "port": 5010
+        },
+		"authentication": {
+			"port": 5011
+		},
+        "blog": {
+			"port": 5012
+		},
+        "authors": {
+			"port": 5013
+		}
+	}
+}
